@@ -1,6 +1,6 @@
 # TASK_05 — плата Motion Logger для Raspberry Pi 5 і корпус для 3D-друку
 
-Завдання: намалювати в Altium плату-модуль, яка вставляється датчиками й одягається на Raspberry Pi, експортувати її у STEP, відкрити у Fusion і зробити корпус, у якому стоять Raspberry Pi і плата. Окремо — код під Raspberry Pi.
+Завдання: намалювати в Altium плату-модуль, яка вставляється датчиками й одягається на Raspberry Pi, експортувати її у STEP, відкрити у Fusion і зробити корпус, у якому стоять Raspberry Pi і плата. Окремо — код під Raspberry Pi (поки демонстраційний).
 
 ![Корпус у Fusion](fusion/images/case_isometric.png)
 
@@ -23,7 +23,7 @@ TASK_05/
 │   ├── script/                  скрипт Fusion (Python), що будує корпус
 │   ├── tools/                   допоміжні скрипти перевірки (Python)
 │   └── images/                  картинки: вигляд моделі і перерізи
-└── code/                        код для Raspberry Pi (поки не написаний, див. code/README.md)
+└── code/                        демонстраційний код для Raspberry Pi (Python), буде змінюватися
 ```
 
 ## 1. Altium: плата Motion Logger
@@ -97,7 +97,7 @@ TASK_05/
 - Змінити розмір: поправ параметри на початку `fusion/script/MotionLoggerCase.py` (`H`, `CAV`, `W`, вікна). У Fusion: `Utilities → Add-Ins → Scripts and Add-Ins` → `+` → `Script or add-in from device` → вибрати папку `fusion/script` → `Run`. Скрипт створить новий документ і запише STL/STEP в `fusion/output/`.
 
 ## 3. Код для Raspberry Pi
-Див. [code/README.md](code/README.md). Станом на 05.10.2026 код не написаний.
+Папка `code/` містить **демонстраційний** код (`motion_logger_demo.py`): читає MPU6050, ADXL345, GPS і кнопки, пише CSV-лог, показує стан світлодіодом. Він простий, на реальному залізі не перевірений і буде змінюватися. Опис і запуск: [code/README.md](code/README.md).
 
 ## Як зроблено корпус (коротко)
 1. Плату намальовано в Altium, STEP експортовано (`altium/Fab/Motion_Logger_board.step`). У ньому лише плата, гніздо `J1`, резистори й світлодіоди; виводи резисторів і світлодіодів звисали на 27 мм униз.
