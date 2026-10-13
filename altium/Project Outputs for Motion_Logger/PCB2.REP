@@ -3,7 +3,7 @@ FileName = PCB2.GBR
 AutoAperture = True
 *************************************************************
 Generating : Bottom Layer
-      File : PCB2.GBL
+      File : PCB2_Bot.GBL
 
     Adding Layer      : Bottom Layer
 
@@ -11,22 +11,21 @@ Generating : Bottom Layer
 
 
 Used DCodes :
-    D15
-    D16
-    D17
-    D18
-    D19
-    D20
-    D21
     D22
     D23
     D24
     D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
 *************************************************************
 
 *************************************************************
 Generating : Top Solder
-      File : PCB2.GTS
+      File : PCB2_TopMask.GTS
 
     Adding Layer      : Top Solder
 
@@ -36,6 +35,9 @@ Generating : Top Solder
 
 
 Used DCodes :
+    D12
+    D13
+    D14
     D15
     D16
     D17
@@ -43,13 +45,11 @@ Used DCodes :
     D19
     D20
     D21
-    D22
-    D23
 *************************************************************
 
 *************************************************************
 Generating : Top Layer
-      File : PCB2.GTL
+      File : PCB2_Top.GTL
 
     Adding Layer      : Top Layer
 
@@ -57,22 +57,23 @@ Generating : Top Layer
 
 
 Used DCodes :
-    D15
-    D16
-    D17
-    D18
-    D19
-    D20
-    D21
+    D12
+    D13
     D22
     D23
     D24
     D25
+    D26
+    D27
+    D28
+    D29
+    D30
+    D31
 *************************************************************
 
 *************************************************************
 Generating : Bottom Solder
-      File : PCB2.GBS
+      File : PCB2_BotMask.GBS
 
     Adding Layer      : Bottom Solder
 
@@ -82,6 +83,7 @@ Generating : Bottom Solder
 
 
 Used DCodes :
+    D14
     D15
     D16
     D17
@@ -89,13 +91,11 @@ Used DCodes :
     D19
     D20
     D21
-    D22
-    D23
 *************************************************************
 
 *************************************************************
 Generating : Top Overlay
-      File : PCB2.GTO
+      File : PCB2_TopSilk.GTO
 
     Adding Layer      : Top Overlay
 
@@ -104,13 +104,11 @@ Used DCodes :
     D10
     D11
     D12
-    D13
-    D14
 *************************************************************
 
 *************************************************************
 Generating : Bottom Overlay
-      File : PCB2.GBO
+      File : PCB2_BotSilk.GBO
 
     Adding Layer      : Bottom Overlay
 
@@ -120,10 +118,10 @@ Used DCodes :
 
 *************************************************************
 Generating : Profile
-      File : PCB2.GM
+      File : PCB2_Board.GM
 
 
 Used DCodes :
-    D26
+    D32
 *************************************************************
 

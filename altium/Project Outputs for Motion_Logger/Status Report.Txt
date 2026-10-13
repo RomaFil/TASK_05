@@ -1,13 +1,18 @@
-Output: NC Drill Files
-Type  : NC Drill
-From  : Project [Motion_Logger.PrjPcb]
-   Generated File[PCB2-Plated.TXT]
-   Generated File[PCB2-NonPlated.TXT]
-   Generated File[PCB2.LDP]
-   Generated File[PCB2.DRR]
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [Motion_Logger.PrjPcb]
+   Generated File[PCB2_TopSilk.GTO]
+   Generated File[PCB2_TopMask.GTS]
+   Generated File[PCB2_Top.GTL]
+   Generated File[PCB2_Bot.GBL]
+   Generated File[PCB2_BotMask.GBS]
+   Generated File[PCB2_BotSilk.GBO]
+   Generated File[PCB2_Board.GM]
+   Generated File[PCB2.EXTREP]
+   Generated File[PCB2.REP]
 
 
-Files Generated   : 4
+Files Generated   : 9
 Documents Printed : 0
 
-Finished Output Generation At 16:14:48 On 05.10.2026
+Finished Output Generation At 9:29:55 On 13.10.2026
