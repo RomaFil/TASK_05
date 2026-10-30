@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Корпус Motion Logger v5 (30.10.2026): правки після друку v4.
-#  - кришка кріпиться до основи сама: 4 колони M3 на зовнішніх кутах, гвинт згори, гайка M3 вкладається в боковий паз
-#    основи (не вплавляється), тож корпус закривається й без плати; труби під гвинти й світловоди в кришці прибрано;
+#  - кришка кріпиться до основи сама: 4 колони M3 на зовнішніх кутах, гвинт згори, кругла гайка M3 (як у ноутбуках)
+#    заходить знизу в наскрізний канал колони й упирається в конус; тож корпус закривається й без плати, а гвинт
+#    підходить будь-якої довжини від мінімальної (див. лог); труби під гвинти й світловоди в кришці прибрано;
 #  - напису нема, верх кришки плоский; ніші кнопок наскрізні з полицею 45 градусів замість стелі;
 #  - вентиляція стінок ромбами (45 градусів, без мостів, перемички 2.5 мм); вікна USB/Ethernet з плоским верхом
 #    і товстою перемичкою над ними; вікно microSD ширше й доходить до лівої стінки.
@@ -56,15 +57,15 @@ SUPPORTS = [(-17.0, 6.0), (-17.0, 54.0)]
 SUP_D = 6.0
 SD_X1, SD_Y0, SD_Y1 = 13.0, 18.0, 38.0   # вікно microSD у дні: від лівої стінки (з вирізом у ній) до x = 13
 
-# кріплення кришки: колони на 4 зовнішніх кутах, гвинт M3 згори, гайка M3 у пазу основи
+# кріплення кришки: колони на 4 зовнішніх кутах, гвинт M3 згори, кругла гайка M3 знизу в каналі основи
 LUG_D = 10.0        # діаметр колони, центр колони = кут габариту корпусу
 LUG_HOLE = 3.4      # отвір під M3 (друк звужує ~0.2)
 LUG_HEAD_D = 6.2    # гніздо під головку гвинта в кришці
 LUG_SEAT_Z = 20.0   # верх конуса-упору головки (конус 45 градусів замість стелі: друкується без мосту)
-LUG_CH_LID = 1.0    # фаска колони біля верху кришки (більша прорізала б гніздо головки)
-NUT_AF, NUT_H = 5.8, 2.8   # паз гайки M3 (5.5 під ключ, 2.4 товщина) із зазором
-NUT_TOP = 6.0       # стеля паза гайки
-LUG_TIP = -3.0      # дно глухого отвору під кінчик гвинта
+LUG_CH = 1.0        # фаска колон біля столу (більша прорізала б гніздо головки й канал гайки)
+NUT_OD = 5.0        # ЗАМІРЯТИ: зовнішній діаметр круглої гайки; канал = NUT_OD, друк звужує ~0.2, тож гайка сидить туго
+NUT_LEN = 3.0       # ЗАМІРЯТИ: висота гайки (лише для розрахунку довжини гвинта в лозі)
+NUT_TOP = 6.0       # верх каналу гайки: тут гайка впирається в конус 45 градусів (без стелі)
 
 # соти на кришці: a = радіус описаного кола шестикутника (сторона), T = товщина перемичок
 HEX_A_LID, HEX_T = 3.5, 1.6
@@ -283,8 +284,8 @@ def build(app, ui):
     base = soft_blank(OX0, OY0, OX1, OY1, zfb, STEP_Z, R_OUT, 'bottom')
     uni(base, rrect(CAVX0 - TONGUE, CAVY0 - TONGUE, CAVX1 + TONGUE, CAVY1 + TONGUE, STEP_Z - 0.1, ztong, R_OUT - (W - TONGUE)))
     for (cx, cy, sx, sy) in LUGS:
-        uni(base, cone(cx, cy, zfb, LUG_D - 2 * EDGE_CH, zfb + EDGE_CH, LUG_D))     # фаска 45 біля столу, як у корпусу
-        uni(base, cyl(cx, cy, zfb + EDGE_CH - 0.05, STEP_Z, LUG_D))
+        uni(base, cone(cx, cy, zfb, LUG_D - 2 * LUG_CH, zfb + LUG_CH, LUG_D))     # фаска 45 біля столу
+        uni(base, cyl(cx, cy, zfb + LUG_CH - 0.05, STEP_Z, LUG_D))
     dif(base, rrect(CAVX0, CAVY0, CAVX1, CAVY1, zft, ztong + 1, R_OUT - W))
     for (x, y) in SUPPORTS:
         uni(base, cyl(x, y, zft - 0.1, -PLATE_T - 0.3, SUP_D))
@@ -330,18 +331,16 @@ def build(app, ui):
     for (u, v) in diamond_grid(OY0 + R_OUT + 3.0, OY1 - R_OUT - 3.0, zlo, zhi, VENT_D, VENT_T, near_sd):
         dif(base, diamond_cut((xa + xb) / 2, u, v, (0, 1, 0), (0, 0, 1), VENT_D, xb - xa)); n_vent += 1
     log('wall vents: %d' % n_vent)
-    # отвори колон: гвинт M3 згори, гайка заходить у шестигранний паз збоку (назовні по діагоналі кута)
+    # отвори колон наскрізні: M3 на всю висоту, знизу канал під круглу гайку до NUT_TOP, над ним конус 45 градусів
+    # (гайка впирається в нього; на друці це не стеля, тож отвір не запечатується); паза збоку нема
     for (cx, cy, sx, sy) in LUGS:
-        dif(base, cyl(cx, cy, LUG_TIP, STEP_Z + 1, LUG_HOLE))
-        s = (sx * SQ, sy * SQ, 0.0)
-        n = (-sy * SQ, sx * SQ, 0.0)
-        zc = NUT_TOP - NUT_H / 2
-        dif(base, hexcut(cx, cy, zc, s, n, NUT_AF / math.sqrt(3), NUT_H))
-        dif(base, bm.createBox(adsk.core.OrientedBoundingBox3D.create(
-            P(cx + s[0] * LUG_D / 2, cy + s[1] * LUG_D / 2, zc), V(*s), V(*n), LUG_D * MM, NUT_AF * MM, NUT_H * MM)))
+        dif(base, cyl(cx, cy, zfb - 1, STEP_Z + 1, LUG_HOLE))
+        dif(base, cyl(cx, cy, zfb - 1, NUT_TOP, NUT_OD))
+        dif(base, cone(cx, cy, NUT_TOP - 0.01, NUT_OD, NUT_TOP + (NUT_OD - LUG_HOLE) / 2, LUG_HOLE))
     seat = LUG_SEAT_Z - (LUG_HEAD_D - 5.5) / 2     # де ляже головка ⌀5.5
-    log('lid screws M3: length %.1f..%.1f mm (head %.1f, nut top %.1f, hole bottom %.1f)' % (
-        seat - NUT_TOP + 2.4 + 0.5, seat - LUG_TIP - 0.5, seat, NUT_TOP, LUG_TIP))
+    log('lid screws M3: length %.1f..%.1f mm (head %.1f, nut top %.1f, base bottom %.1f); nut OD %.1f, walls %.2f / %.2f mm' % (
+        seat - NUT_TOP + NUT_LEN + 0.5, seat - zfb, seat, NUT_TOP, zfb, NUT_OD,
+        LUG_D / 2 - LUG_CH - NUT_OD / 2, math.hypot(R_OUT, R_OUT) - (R_OUT - W) - NUT_OD / 2))
     occ_base = newcomp('Case_Base')
     bd_base = addbody(occ_base, base, 'Base')
 
@@ -349,8 +348,8 @@ def build(app, ui):
     # верх плоский, без напису і без труб усередині: кришка тримається лише на 4 колонах і не торкається плати
     lid = soft_blank(OX0, OY0, OX1, OY1, zlb, zlt, R_OUT, 'top')
     for (cx, cy, sx, sy) in LUGS:
-        uni(lid, cyl(cx, cy, zlb, zlt - LUG_CH_LID + 0.05, LUG_D))
-        uni(lid, cone(cx, cy, zlt - LUG_CH_LID, LUG_D, zlt, LUG_D - 2 * LUG_CH_LID))
+        uni(lid, cyl(cx, cy, zlb, zlt - LUG_CH + 0.05, LUG_D))
+        uni(lid, cone(cx, cy, zlt - LUG_CH, LUG_D, zlt, LUG_D - 2 * LUG_CH))
     # колони додано до вирізу під язик основи: так вони не заходять на язик у кутах
     dif(lid, rrect(CAVX0 - SKIRT, CAVY0 - SKIRT, CAVX1 + SKIRT, CAVY1 + SKIRT, zlb - 1, ztong, R_OUT - (W - SKIRT)))
     dif(lid, rrect(CAVX0, CAVY0, CAVX1, CAVY1, -0.5, CAV, R_OUT - W))
