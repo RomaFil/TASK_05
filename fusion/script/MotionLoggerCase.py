@@ -464,7 +464,7 @@ def build(app, ui):
         os.makedirs(img_dir, exist_ok=True)
         ui.activeSelections.clear()   # виділене ребро з попереднього сеансу потрапляє на знімки білою лінією
         vp = app.activeViewport
-        cx, cy, cz =(OX0 + OX1) / 2, (OY0 + OY1) / 2, (zfb + zlt) / 2
+        cx, cy, cz = (OX0 + OX1) / 2, (OY0 + OY1) / 2, (zfb + zlt) / 2
         def shot(name, eye, up, ortho, show):
             for o in pi: o.isLightBulbOn = False
             occ_plate.isLightBulbOn = False
