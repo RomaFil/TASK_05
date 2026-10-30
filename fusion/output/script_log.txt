@@ -3,12 +3,12 @@ H=11.0 zpt=-12.50 dz=-13.81 pi_bot=-13.78 floor top=-16.78 bottom=-19.78
 soft_blank bottom: loop edges 8
 lintel over USB 6.5 mm, over Ethernet 9.4 mm
 wall vents: 31
-lid screws M3: length 16.5..22.1 mm (head 19.6, nut top 6.0, hole bottom -3.0)
+lid screws M3: length 18.1..39.4 mm (head 19.6, nut top 6.0, base bottom -19.8); nut OD 7.0, walls 1.00 / 1.57 mm
 soft_blank top: loop edges 8
 lid hexes: 8
 imported pi 1
 rounded ends ok: ['bottom', 'top']
-volume base 49.98 cm3, lid 54.71 cm3
+volume base 47.02 cm3, lid 54.75 cm3
 occ Plate_Motion_Logger:1 world mm x -19.8..65.2 y -0.8..60.0 z -1.5..0.0 children=0
 occ Case_Base:1 world mm x -28.8..96.6 y -10.2..68.8 z -19.8..13.0 children=0
 occ Case_Lid:1 world mm x -28.8..96.6 y -10.2..68.8 z 11.2..27.5 children=0
