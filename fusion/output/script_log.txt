@@ -1,30 +1,23 @@
-text 'AJAX' it=0 h=11.00
-text 'AJAX' size 44.9 x 11.2 mm, scale 0.983
-text 'AJAX' bodies=4
-text 'MOTION LOGGER' it=0 h=5.50
-text 'MOTION LOGGER' size 67.3 x 5.7 mm, scale 0.861
-text 'MOTION LOGGER' it=1 h=4.74
-text 'MOTION LOGGER' size 58.0 x 4.9 mm, scale 1.000
-text 'MOTION LOGGER' bodies=12
-text bodies total: 16
 units=mm
 H=11.0 zpt=-12.50 dz=-13.81 pi_bot=-13.78 floor top=-16.78 bottom=-19.78
 soft_blank bottom: loop edges 8
-wall hexes: 51
+lintel over USB 6.5 mm, over Ethernet 9.4 mm
+wall vents: 31
+lid screws M3: length 16.5..22.1 mm (head 19.6, nut top 6.0, hole bottom -3.0)
 soft_blank top: loop edges 8
 lid hexes: 8
 imported pi 1
 rounded ends ok: ['bottom', 'top']
-volume base 41.01 cm3, lid 55.28 cm3
+volume base 49.98 cm3, lid 54.71 cm3
 occ Plate_Motion_Logger:1 world mm x -19.8..65.2 y -0.8..60.0 z -1.5..0.0 children=0
-occ Case_Base:1 world mm x -23.8..91.6 y -5.2..63.8 z -19.8..13.0 children=0
-occ Case_Lid:1 world mm x -23.8..91.6 y -5.2..63.8 z -0.0..27.5 children=0
+occ Case_Base:1 world mm x -28.8..96.6 y -10.2..68.8 z -19.8..13.0 children=0
+occ Case_Lid:1 world mm x -28.8..96.6 y -10.2..68.8 z 11.2..27.5 children=0
 occ Pi5_proxy:1 world mm x -0.0..88.1 y -1.7..56.0 z -15.3..3.7 children=50
 occ Case_Lid_for_print:1 world mm x 0.0..0.0 y 0.0..0.0 z 0.0..0.0 children=0
 interferences total 86, with case: 0
 step ok
-Case_Base_print_v4.stl ok
-Case_Lid_print_flipped_v4.stl ok
+Case_Base_print.stl ok
+Case_Lid_print_flipped.stl ok
 image case_isometric.png
 image case_isometric_back.png
 image lid_top_view.png
