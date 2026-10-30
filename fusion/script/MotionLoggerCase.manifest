@@ -2,7 +2,7 @@
   "autodeskProduct": "Fusion",
   "type": "script",
   "author": "Roman / Claude",
-  "description": { "": "Korpus Motion Logger (Pi 5 + plata): osnova i kryshka" },
+  "description": { "": "Korpus Motion Logger v5 (Pi 5 + plata): osnova i kryshka na gvyntakh M3" },
   "supportedOS": "windows|mac",
   "editEnabled": true,
   "version": "1.0.0"
