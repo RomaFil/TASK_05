@@ -1,3 +1,5 @@
+**English:** [README.en.md](README.en.md)
+
 # TASK_05 — плата Motion Logger для Raspberry Pi 5 і корпус для 3D-друку
 
 Завдання: намалювати в Altium плату-модуль, яка вставляється датчиками й одягається на Raspberry Pi, експортувати її у STEP, відкрити у Fusion і зробити корпус, у якому стоять Raspberry Pi і плата. Окремо — код під Raspberry Pi (поки демонстраційний).
